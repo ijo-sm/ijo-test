@@ -25,10 +25,10 @@ class PanelFolder {
 		await new PluginsFolder(this.config, "panel").create();
 		Logger.profile("PluginsFolder", "info", "creating finished");
 
-		Logger.info("ExecutorsFolder", "creating");
-		Logger.profile("ExecutorsFolder");
-		await new ExecutorsFolder(this.config, "panel").create();
-		Logger.profile("ExecutorsFolder", "info", "creating finished");
+		Logger.info("LanguagesFolder", "creating");
+		Logger.profile("LanguagesFolder");
+		await new LanguagesFolder(this.config, "panel").create();
+		Logger.profile("LanguagesFolder", "info", "creating finished");
 	}
 
 	async installPanel() {
@@ -81,7 +81,7 @@ class PluginsFolder {
 	}
 }
 
-class ExecutorsFolder {
+class LanguagesFolder {
 	constructor(config, path) {
 		this.config = config;
 		this.path = path;
@@ -89,26 +89,26 @@ class ExecutorsFolder {
 
 	async create() {
 		this.createFolder();
-		await this.installExecutors();
+		await this.installLanguages();
 	}
 
 	createFolder() {
-		Utils.mkdir(Utils.path() + "/test/" + this.path + "/executors");
+		Utils.mkdir(Utils.path() + "/test/" + this.path + "/languages");
 	}
 
-	async installExecutors() {
-		let executors = this.config.executors;
+	async installLanguages() {
+		let languages = this.config.languages;
 
-		if(typeof executors !== "object") {
+		if(typeof languages !== "object") {
 			return;
 		}
 
-		for(let name in executors) {
-			if(typeof executors[name] === "object") {
-				Logger.info("executor", "installing", name);
-				Logger.profile("executor");
-				await Installer.executor(executors[name], name, this.path);
-				Logger.profile("executor", "info", "installing finished", name);
+		for(let name in languages) {
+			if(typeof languages[name] === "object") {
+				Logger.info("language", "installing", name);
+				Logger.profile("language");
+				await Installer.language(languages[name], name, this.path);
+				Logger.profile("language", "info", "installing finished", name);
 			}
 		}
 	}

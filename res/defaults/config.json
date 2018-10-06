@@ -12,10 +12,10 @@
 	"plugins": {
 
 	},
-	"executors": {
-		"executor-js": {
+	"languages": {
+		"language-js": {
 			"type": "git", 
-			"path": "https://github.com/ijo-sm/executor-js.git",
+			"path": "https://github.com/ijo-sm/language-js.git",
 			"branch": "master",
 			"ignore_self": false
 		}
