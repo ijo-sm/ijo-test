@@ -11,11 +11,11 @@ function startIJO(keepAlive = 0) {
 	let IJO = ChildProcess.fork("panel/index", [], {cwd: Utils.path() + "/test", stdio: ['ipc', 'pipe', 'pipe']});
 
 	IJO.stdout.on('data', (data) => {
-		process.stdout.write("> " + data.toString());
+		process.stdout.write(Utils.prefixLines(data.toString(), "> "));
 	});
 	
 	IJO.stderr.on('data', (data) => {
-		process.stderr.write("> " + data.toString());
+		process.stderr.write(Utils.prefixLines(data.toString(), "> "));
 	});
 
 	IJO.on('error', (err) => {

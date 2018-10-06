@@ -16,6 +16,20 @@ class Utils {
 		Logger.profile("fs", "debug", "copy", origin, "to", destination);
 	}
 
+	prefixLines(data, prefix) {
+		let lines = data.split("\n");
+
+		for(var i = 0; i < lines.length; i++) {
+			if(lines[i] === "") {
+				continue;
+			}
+
+			lines[i] = prefix + lines[i];
+		}
+
+		return lines.join("\n");
+	}
+
 	copyFolder(origin, destination) {
 		let files = FileSystem.readdirSync(origin);
 
