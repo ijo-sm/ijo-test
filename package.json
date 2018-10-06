@@ -1,0 +1,29 @@
+{
+	"name": "ijo-test",
+	"version": "0.0.1",
+	"description": "The test package for the IJO Server Manager",
+	"main": "index.js",
+	"bin": {
+		"ijo-test": "index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ijo-sm/ijo-test.git"
+	},
+	"keywords": [
+		"server",
+		"manager",
+		"lightweight",
+		"user-friendly"
+	],
+	"author": "IJO",
+	"license": "GPL-3.0",
+	"bugs": {
+		"url": "https://github.com/ijo-sm/ijo-test/issues"
+	},
+	"homepage": "https://github.com/ijo-sm/ijo-test#readme",
+	"dependencies": {
+		"pify": "^4.0.0",
+		"rimraf": "^2.6.2"
+	}
+}
