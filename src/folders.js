@@ -65,9 +65,19 @@ class PluginsFolder {
 
 	async installPlugins() {
 		let plugins = this.config.plugins;
+		let packageName = Utils.getPackageName();
 
 		if(typeof plugins !== "object") {
-			return;
+			if(packageName !== "plugin") {
+				return;
+			}
+
+			plugins = {};
+			plugins[packageName] = {};
+		}
+
+		if(packageName === "plugin" && plugins[packageName] === undefined) {
+			plugins[packageName] = {};
 		}
 
 		for(let name in plugins) {
@@ -98,9 +108,19 @@ class ExecutorsFolder {
 
 	async installExecutors() {
 		let executors = this.config.executors;
+		let packageName = Utils.getPackageName();
 
 		if(typeof executors !== "object") {
-			return;
+			if(packageName !== "executor") {
+				return;
+			}
+
+			executors = {};
+			executors[packageName] = {};
+		}
+
+		if(packageName === "executor" && executors[packageName] === undefined) {
+			executors[packageName] = {};
 		}
 
 		for(let name in executors) {
