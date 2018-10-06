@@ -9,15 +9,6 @@
 	"save_panel_config": false,
 	"keep_alive": false,
 	"logging_level": "info",
-	"plugins": {
-
-	},
-	"languages": {
-		"language-js": {
-			"type": "git", 
-			"path": "https://github.com/ijo-sm/language-js.git",
-			"branch": "master",
-			"ignore_self": false
-		}
-	}
+	"plugins": {},
+	"languages": {}
 }
