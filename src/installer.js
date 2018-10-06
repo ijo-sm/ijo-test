@@ -25,6 +25,8 @@ class Installer {
 			config.path = Utils.path();
 		}
 
+		Utils.mkdir(Utils.path() + "/test/" + location + "/executors/" + name);
+
 		await Utils.install(config, Utils.path() + "/test/" + location + "/plugins/" + name);
 	}
 
