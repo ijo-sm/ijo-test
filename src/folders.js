@@ -67,7 +67,16 @@ class PluginsFolder {
 		let plugins = this.config.plugins;
 
 		if(typeof plugins !== "object") {
-			return;
+			if(Utils.getPackageName() !== "plugin") {
+				return;
+			}
+
+			plugins = {};
+			plugins[Utils.getExactPackageName()] = {};
+		}
+
+		if(Utils.getPackageName() === "plugin" && plugins[Utils.getExactPackageName()] === undefined) {
+			plugins[Utils.getExactPackageName()] = {};
 		}
 
 		for(let name in plugins) {
@@ -100,7 +109,16 @@ class ExecutorsFolder {
 		let executors = this.config.executors;
 
 		if(typeof executors !== "object") {
-			return;
+			if(Utils.getPackageName() !== "executor") {
+				return;
+			}
+
+			executors = {};
+			executors[Utils.getExactPackageName()] = {};
+		}
+
+		if(Utils.getPackageName() === "executor" && executors[Utils.getExactPackageName()] === undefined) {
+			executors[Utils.getExactPackageName()] = {};
 		}
 
 		for(let name in executors) {
