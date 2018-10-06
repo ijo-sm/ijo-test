@@ -1,0 +1,14 @@
+{
+	"ijo": {
+		"type": "git", 
+		"path": "https://github.com/ijo-sm/ijo.git",
+		"branch": "dev",
+		"ignore_self": false
+	},
+	"machine": false,
+	"save_panel_config": false,
+	"keep_alive": false,
+	"logging_level": "info",
+	"plugins": {},
+	"languages": {}
+}
