@@ -10,5 +10,5 @@
 	"keep_alive": false,
 	"logging_level": "info",
 	"plugins": {},
-	"languages": {}
+	"executors": {}
 }
