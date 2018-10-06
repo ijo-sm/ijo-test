@@ -65,19 +65,18 @@ class PluginsFolder {
 
 	async installPlugins() {
 		let plugins = this.config.plugins;
-		let packageName = Utils.getPackageName();
 
 		if(typeof plugins !== "object") {
-			if(packageName !== "plugin") {
+			if(Utils.getPackageName() !== "plugin") {
 				return;
 			}
 
 			plugins = {};
-			plugins[packageName] = {};
+			plugins[Utils.getExactPackageName()] = {};
 		}
 
-		if(packageName === "plugin" && plugins[packageName] === undefined) {
-			plugins[packageName] = {};
+		if(Utils.getPackageName() === "plugin" && plugins[Utils.getExactPackageName()] === undefined) {
+			plugins[Utils.getExactPackageName()] = {};
 		}
 
 		for(let name in plugins) {
@@ -108,19 +107,18 @@ class ExecutorsFolder {
 
 	async installExecutors() {
 		let executors = this.config.executors;
-		let packageName = Utils.getPackageName();
 
 		if(typeof executors !== "object") {
-			if(packageName !== "executor") {
+			if(Utils.getPackageName() !== "executor") {
 				return;
 			}
 
 			executors = {};
-			executors[packageName] = {};
+			executors[Utils.getExactPackageName()] = {};
 		}
 
-		if(packageName === "executor" && executors[packageName] === undefined) {
-			executors[packageName] = {};
+		if(Utils.getPackageName() === "executor" && executors[Utils.getExactPackageName()] === undefined) {
+			executors[Utils.getExactPackageName()] = {};
 		}
 
 		for(let name in executors) {
