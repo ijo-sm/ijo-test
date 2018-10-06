@@ -2,7 +2,6 @@ const FileSystem = require("fs");
 const Util = require('util');
 const ChildProcess = require("child_process");
 const exec = Util.promisify(ChildProcess.exec);
-const rimraf = require("rimraf");
 
 class Utils {
 	checkForError(response) {
@@ -74,25 +73,6 @@ class Utils {
 		}
 
 		return packageName;
-	}
-
-	gitClone(path, destination, branch = "master") {
-		this.mkdir(destination + "/.catch");
-
-		Logger.profile("git");
-		let git = ChildProcess.spawnSync("git", ["clone", "--single-branch", "-b", branch, path, "."], {cwd: destination + "/.catch"});
-
-		if(git.error) {
-			return Logger.err("git", "there was an error while cloning", path + "#" + branch, "(" + err + ")");
-		}
-
-		Logger.profile("git", "debug", "clone", path + "#" + branch, "to", destination + "/.catch");
-
-		this.copyFolderRecursively(destination + "/.catch", destination, {exclude: "/.git/"});
-
-		Logger.profile("fs");
-		rimraf.sync(destination + "/.catch");
-		Logger.profile("fs", "debug", "remove", destination + "/.catch");
 	}
 
 	gitPull(path, destination, branch = "master") {
