@@ -1,6 +1,6 @@
 {
 	"name": "@ijo-sm/ijo-test",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"description": "The test package for the IJO Server Manager",
 	"main": "index.js",
 	"bin": {
