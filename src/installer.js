@@ -29,17 +29,6 @@ class Installer {
 
 		await Utils.install(config, Utils.path() + "/test/" + location + "/plugins/" + name);
 	}
-
-	async executor(config, name, location) {
-		if(Utils.getExactPackageName() === name && !config.ignore_self) {
-			config.type = "fs";
-			config.path = Utils.path();
-		}
-
-		Utils.mkdir(Utils.path() + "/test/" + location + "/executors/" + name);
-
-		await Utils.install(config, Utils.path() + "/test/" + location + "/executors/" + name);
-	}
 }
 
 module.exports = new Installer();

@@ -24,11 +24,6 @@ class PanelFolder {
 		Logger.profile("PluginsFolder");
 		await new PluginsFolder(this.config, "panel").create();
 		Logger.profile("PluginsFolder", "info", "creating finished");
-
-		Logger.info("ExecutorsFolder", "creating");
-		Logger.profile("ExecutorsFolder");
-		await new ExecutorsFolder(this.config, "panel").create();
-		Logger.profile("ExecutorsFolder", "info", "creating finished");
 	}
 
 	async installPanel() {
@@ -85,48 +80,6 @@ class PluginsFolder {
 				Logger.profile("plugin");
 				await Installer.plugin(plugins[name], name, this.path);
 				Logger.profile("plugin", "info", "installing finished", name);
-			}
-		}
-	}
-}
-
-class ExecutorsFolder {
-	constructor(config, path) {
-		this.config = config;
-		this.path = path;
-	}
-
-	async create() {
-		this.createFolder();
-		await this.installExecutors();
-	}
-
-	createFolder() {
-		Utils.mkdir(Utils.path() + "/test/" + this.path + "/executors");
-	}
-
-	async installExecutors() {
-		let executors = this.config.executors;
-
-		if(typeof executors !== "object") {
-			if(Utils.getPackageName() !== "executor") {
-				return;
-			}
-
-			executors = {};
-			executors[Utils.getExactPackageName()] = {};
-		}
-
-		if(Utils.getPackageName() === "executor" && executors[Utils.getExactPackageName()] === undefined) {
-			executors[Utils.getExactPackageName()] = {};
-		}
-
-		for(let name in executors) {
-			if(typeof executors[name] === "object") {
-				Logger.info("executor", "installing", name);
-				Logger.profile("executor");
-				await Installer.executor(executors[name], name, this.path);
-				Logger.profile("executor", "info", "installing finished", name);
 			}
 		}
 	}
