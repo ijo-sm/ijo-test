@@ -27,7 +27,7 @@ module.exports = class Fork {
 	}
 
 	start() {
-		this.process = ChildProcess.fork(this.options.path, [], {cwd: Utils.path.get() + "/test", stdio: ['ipc', 'pipe', 'pipe']});
+		this.process = ChildProcess.fork(this.options.path, [], {cwd: Utils.path.get() + "/test", stdio: ['pipe', 'pipe', 'pipe', 'ipc']});
 
 		this.process.stdout.on('data', (data) => {
 			process.stdout.write(prefixProcessLines(data.toString(), this.options.prefix));
