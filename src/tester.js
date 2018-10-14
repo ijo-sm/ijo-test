@@ -10,14 +10,13 @@ module.exports = class Tester {
 
 		Logger.info("test", "starting");
 		Logger.profile("test");
-
 		Logger.debug("config", this.config);
-
 		Logger.info("TestFolder", "creating");
 		Logger.profile("TestFolder");
-		await new TestFolder(this.config).create();
-		Logger.profile("TestFolder", "info", "creating finished");
 
+		await new TestFolder(this.config).create();
+		
+		Logger.profile("TestFolder", "info", "creating finished");
 		Logger.info("ijo", "starting");
 
 		this.ijo = new IJO(this.config);

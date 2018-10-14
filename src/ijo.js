@@ -1,5 +1,18 @@
-const Utils = require('./utils');
 const ChildProcess = require("child_process");
+
+function prefixProcessLines(data, prefix) {
+	let lines = data.split("\n");
+
+	for(var i = 0; i < lines.length; i++) {
+		if(lines[i] === "") {
+			continue;
+		}
+
+		lines[i] = prefix + lines[i];
+	}
+
+	return lines.join("\n");
+}
 
 module.exports = class IJO {
 	constructor(config) {
@@ -8,14 +21,14 @@ module.exports = class IJO {
 	}
 
 	start() {
-		this.process = ChildProcess.fork("panel/index", [], {cwd: Utils.path() + "/test", stdio: ['ipc', 'pipe', 'pipe']});
+		this.process = ChildProcess.fork("panel/index", [], {cwd: Utils.path.get() + "/test", stdio: ['ipc', 'pipe', 'pipe']});
 
 		this.process.stdout.on('data', (data) => {
-			process.stdout.write(Utils.prefixLines(data.toString(), "> "));
+			process.stdout.write(prefixProcessLines(data.toString(), "> "));
 		});
 		
 		this.process.stderr.on('data', (data) => {
-			process.stderr.write(Utils.prefixLines(data.toString(), "> "));
+			process.stderr.write(prefixProcessLines(data.toString(), "> "));
 		});
 
 		this.process.on('error', (err) => {

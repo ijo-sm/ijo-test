@@ -1,5 +1,4 @@
 const FileSystem = require("fs");
-const Utils = require("./../utils");
 const PanelFolder = require("./panel");
 
 module.exports = class TestFolder {
@@ -14,7 +13,7 @@ module.exports = class TestFolder {
 	}
 
 	createFolder() {
-		Utils.mkdir(Utils.path() + "/test");
+		Utils.fs.mkdir(Utils.path.get() + "/test");
 	}
 
 	cleanupFiles() {
@@ -26,9 +25,11 @@ module.exports = class TestFolder {
 	async createFolders() {
 		Logger.info("PanelFolder", "creating");
 		Logger.profile("PanelFolder");
+		
 		await new PanelFolder(this.config).create();
+
 		Logger.profile("PanelFolder", "info", "creating finished");
 
-		Utils.mkdir(Utils.path() + "/test/data");
+		Utils.fs.mkdir(Utils.path.get() + "/test/data");
 	}
 }

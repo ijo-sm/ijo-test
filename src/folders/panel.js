@@ -1,4 +1,3 @@
-const Utils = require("./../utils");
 const Builder = require("./../builder");
 const Installer = require("./../installer");
 const PluginsFolder = require("./plugins");
@@ -16,29 +15,34 @@ module.exports = class PanelFolder {
 	}
 
 	createFolder() {
-		Utils.mkdir(Utils.path() + "/test/panel");
+		Utils.fs.mkdir(Utils.path.get() + "/test/panel");
 	}
 
 	async createFolders() {
 		Logger.info("PluginsFolder", "creating");
 		Logger.profile("PluginsFolder");
+
 		await new PluginsFolder(this.config, "panel").create();
+
 		Logger.profile("PluginsFolder", "info", "creating finished");
 	}
 
 	async installPanel() {
 		Logger.info("ijo", "installing");
 		Logger.profile("ijo");
-		await Installer.ijo(this.config);
-		Logger.profile("ijo", "info", "installing finished");
 
+		await Installer.ijo(this.config);
+
+		Logger.profile("ijo", "info", "installing finished");
 		Logger.info("ijo", "building");
 		Logger.profile("ijo");
+
 		await Builder.ijo(this.config);
+
 		Logger.profile("ijo", "info", "building finished");
 	}
 
 	async installPackages() {
-		await Utils.forceInstallNPMPackage("", {cwd: Utils.path() + "/test/panel"});
+		await Utils.cmd.forceInstallNPMPackage("", {cwd: Utils.path.get() + "/test/panel"});
 	}
 }

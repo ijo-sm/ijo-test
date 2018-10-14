@@ -5,7 +5,7 @@ let levelNumbers = {
 	"debug": 3
 }
 
-module.exports = class Logger {
+class Logger {
 	constructor(level) {
 		this.profiles = {};
 		this.level = level;
@@ -53,3 +53,5 @@ module.exports = class Logger {
 		}
 	}
 }
+
+module.exports = new Logger();
