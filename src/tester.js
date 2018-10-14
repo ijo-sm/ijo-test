@@ -1,5 +1,5 @@
 const TestFolder = require("./folders/test");
-const IJO = require("./ijo");
+const Fork = require("./fork");
 const TestConfig = require("./config");
 
 module.exports = class Tester {
@@ -19,7 +19,23 @@ module.exports = class Tester {
 		Logger.profile("TestFolder", "info", "creating finished");
 		Logger.info("ijo", "starting");
 
-		this.ijo = new IJO(this.config);
+		this.ijo = new Fork(this.config, {
+			path: "panel/index",
+			name: "ijo",
+			prefix: "p: ",
+			keepAlive: this.config.ijo.keep_alive
+		});
 		this.ijo.start();
+
+		if(this.config.machine) {
+			Logger.info("machine", "starting");
+			this.machine = new Fork(this.config, {
+				path: "machine/index",
+				name: "machine",
+				prefix: "m: ",
+				keepAlive: this.config.machine.keep_alive
+			});
+			this.machine.start();
+		}
 	}
 }

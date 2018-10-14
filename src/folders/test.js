@@ -1,5 +1,6 @@
 const FileSystem = require("fs");
 const PanelFolder = require("./panel");
+const MachineFolder = require("./machine");
 
 module.exports = class TestFolder {
 	constructor(config) {
@@ -29,6 +30,15 @@ module.exports = class TestFolder {
 		await new PanelFolder(this.config).create();
 
 		Logger.profile("PanelFolder", "info", "creating finished");
+
+		if(this.config.machine) {
+			Logger.info("MachineFolder", "creating");
+			Logger.profile("MachineFolder");
+			
+			await new MachineFolder(this.config).create();
+	
+			Logger.profile("MachineFolder", "info", "creating finished");
+		}
 
 		Utils.fs.mkdir(Utils.path.get() + "/test/data");
 	}
