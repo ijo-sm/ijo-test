@@ -9,7 +9,7 @@ class PathUtilities {
 			return path.includes(token);
 		}
 		else if(token instanceof Array) {
-			return token.map(token => this.matchPath(path, token)).find(Boolean);
+			return token.map(token => this.match(path, token)).find(Boolean);
 		}
 		else if(token instanceof RegExp) {
 			return path.match(token);
