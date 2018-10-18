@@ -27,6 +27,8 @@ module.exports = class Fork {
 	}
 
 	start() {
+		Logger.profile(this.options.name);
+
 		this.process = ChildProcess.fork(this.options.path, [], {cwd: Utils.path.get() + "/test", stdio: ['pipe', 'pipe', 'pipe', 'ipc']});
 
 		this.process.stdout.on('data', (data) => {
