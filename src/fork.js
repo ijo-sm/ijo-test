@@ -46,15 +46,14 @@ module.exports = class Fork {
 		this.process.on('close', (code) => {
 			Logger.info(this.options.name, "exited with code", code);
 
-			if(typeof this.options.keepAlive === "number" && this.options.keepAlive > this.tries) {
-				Logger.info(this.options.name, "restarting");
+			if(code === 123 || typeof this.options.keepAlive !== "number" || this.options.keepAlive <= this.tries) {
+				return Logger.profile(this.options.name, "info", "ending");
+			}
 
-				this.tries++;
-				this.start();
-			}
-			else {
-				Logger.profile(this.options.name, "info", "ending");
-			}
+			Logger.info(this.options.name, "restarting");
+
+			this.tries++;
+			this.start();
 		});
 	}
 }
