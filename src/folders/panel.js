@@ -28,18 +28,18 @@ module.exports = class PanelFolder {
 	}
 
 	async installPanel() {
-		Logger.info("ijo", "installing");
-		Logger.profile("ijo");
+		Logger.info("panel", "installing");
+		Logger.profile("panel");
 
-		await Installer.ijo(this.config);
+		await Installer.panel(this.config);
 
-		Logger.profile("ijo", "info", "installing finished");
-		Logger.info("ijo", "building");
-		Logger.profile("ijo");
+		Logger.profile("panel", "info", "installing finished");
+		Logger.info("panel", "building");
+		Logger.profile("panel");
 
-		await Builder.ijo(this.config);
+		await Builder.panel(this.config);
 
-		Logger.profile("ijo", "info", "building finished");
+		Logger.profile("panel", "info", "building finished");
 	}
 
 	async installPackages() {

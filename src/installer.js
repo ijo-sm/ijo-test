@@ -12,7 +12,7 @@ async function install(config, destination) {
 }
 
 class Installer {
-	async ijo(config) {
+	async panel(config) {
 		if(typeof config.ijo !== "object") {
 			config.ijo = {
 				type: "git",

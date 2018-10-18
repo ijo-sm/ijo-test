@@ -21,7 +21,7 @@ module.exports = class Tester {
 
 		this.ijo = new Fork(this.config, {
 			path: "panel/index",
-			name: "ijo",
+			name: "panel",
 			prefix: "p: ",
 			keepAlive: this.config.ijo.keep_alive
 		});

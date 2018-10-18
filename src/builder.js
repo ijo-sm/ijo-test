@@ -1,5 +1,5 @@
 class Builder {
-	async ijo() {
+	async panel() {
 		// Install missing NPM Packages
 		await Utils.cmd.forceInstallNPMPackage("sass", {global: true});
 		await Utils.cmd.forceInstallNPMPackage("uglifyjs-folder", {global: true});
