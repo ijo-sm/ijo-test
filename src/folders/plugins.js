@@ -8,6 +8,7 @@ module.exports = class PluginsFolder {
 
 	async create() {
 		this.createFolder();
+		
 		await this.installPlugins();
 	}
 

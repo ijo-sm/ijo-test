@@ -10,6 +10,7 @@ module.exports = class TestFolder {
 	async create() {
 		this.createFolder();
 		this.cleanupFiles();
+		
 		await this.createFolders();
 	}
 

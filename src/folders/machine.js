@@ -7,6 +7,7 @@ module.exports = class PanelFolder {
 
 	async create() {
 		this.createFolder();
+		
 		await this.installMachine();
 	}
 
