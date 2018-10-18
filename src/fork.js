@@ -56,4 +56,8 @@ module.exports = class Fork {
 			this.start();
 		});
 	}
+
+	stop() {
+		this.process.send({message: "kill"});
+	}
 }
