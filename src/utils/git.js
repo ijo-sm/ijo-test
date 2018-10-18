@@ -12,10 +12,10 @@ module.exports = class GitUtilities {
 		let git = ChildProcess.spawnSync("git", ["pull", "origin", branch], {cwd: destination});
 
 		if(git.error) {
-			return Logger.err("git", "there was an error while pulling", path + "#" + branch, "(" + git.error + ")");
+			return Logger.err("git", `there was an error while pulling ${path}#${branch} (${git.error})`);
 		}
 
-		Logger.profile("git", "debug", "pull", path + "#" + branch, "to", destination);
+		Logger.profile("git", "debug", `pull ${path}#${branch} to ${destination}`);
 	}
 
 	gitSetup(path, destination) {
@@ -24,7 +24,7 @@ module.exports = class GitUtilities {
 		let gitInit = ChildProcess.spawnSync("git", ["init"], {cwd: destination});
 
 		if(gitInit.error) {
-			return Logger.err("git", "there was an error while initializing", destination, "(" + gitInit.error + ")");
+			return Logger.err("git", `there was an error while initializing ${destination} (${gitInit.error})`);
 		}
 
 		Logger.profile("git", "debug", "init", destination);

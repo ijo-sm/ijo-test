@@ -13,7 +13,7 @@ module.exports = class PluginsFolder {
 	}
 
 	createFolder() {
-		Utils.fs.mkdir(Utils.path.get() + "/test/" + this.path + "/plugins");
+		Utils.fs.mkdir(`${Utils.path.get()}/test/${this.path}/plugins`);
 	}
 
 	async installPlugins() {

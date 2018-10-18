@@ -12,7 +12,7 @@ module.exports = class PanelFolder {
 	}
 
 	createFolder() {
-		Utils.fs.mkdir(Utils.path.get() + "/test/machine");
+		Utils.fs.mkdir(`${Utils.path.get()}/test/machine`);
 	}
 
 	async installMachine() {

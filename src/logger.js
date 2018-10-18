@@ -23,7 +23,7 @@ class Logger {
 			return;
 		}
 
-		console.log("[" + level + "] " + name + " -", ...messages);
+		console.log(`[${level}] ${name} -`, ...messages);
 	}
 
 	err(name, ...messages) {
