@@ -29,6 +29,7 @@ module.exports = class Tester {
 
 		if(this.config.machine) {
 			Logger.info("machine", "starting");
+
 			this.machine = new Fork(this.config, {
 				path: "machine/index",
 				name: "machine",
@@ -37,5 +38,13 @@ module.exports = class Tester {
 			});
 			this.machine.start();
 		}
+
+		Utils.process.onExit(() => {
+			this.ijo.stop();
+
+			if(this.config.machine) {
+				this.machine.stop();
+			}
+		});
 	}
 }

@@ -81,12 +81,21 @@ class CMDUtilities {
 	}
 }
 
+class ProcessUtilities {
+	onExit(callback) {
+		process.on('SIGINT', () => {
+			callback();
+		});
+	}
+}
+
 class Utilities {
 	constructor() {
 		this.git = new GitUtilities();
 		this.fs = new FileSystemUtilities();
 		this.path = new PathUtilities();
 		this.cmd = new CMDUtilities();
+		this.process = new ProcessUtilities();
 	}
 
 	lazyCatch(callback) {
