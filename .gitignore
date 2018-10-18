@@ -1,3 +1,6 @@
-node_modules
-test
-test.json
+# Folders
+/node_modules/
+/test/
+
+# Files
+/test.json
