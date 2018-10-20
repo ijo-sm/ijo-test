@@ -12,7 +12,7 @@ module.exports = class FileSystemUtilities {
 	copyFolder(origin, destination) {
 		let files = FileSystem.readdirSync(origin);
 
-		for(var i = 0; i < files.length; i++) {
+		for(let i = 0; i < files.length; i++) {
 			this.copyFile(origin + "/" + files[i], destination + "/" + files[i]);
 		}
 	}
@@ -20,7 +20,7 @@ module.exports = class FileSystemUtilities {
 	copyFolderRecursively(origin, destination, options = {}) {
 		let files = FileSystem.readdirSync(origin);
 
-		for(var i = 0; i < files.length; i++) {
+		for(let i = 0; i < files.length; i++) {
 			let isDirectory = FileSystem.statSync(origin + "/" + files[i]).isDirectory();
 
 			if(isDirectory && !Utils.path.match(origin + "/" + files[i] + "/", options["exclude"])) {

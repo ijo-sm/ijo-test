@@ -16,7 +16,7 @@ module.exports = class CMDUtilities {
 	async execute(command, options = {}) {
 		Logger.profile("cmd");
 
-		var response = await exec(command, options);
+		let response = await exec(command, options);
 
 		Logger.profile("cmd", "debug", `execute \"${command}\" in ${options.cwd || Utils.path.get()}`, );
 

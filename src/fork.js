@@ -3,7 +3,7 @@ const ChildProcess = require("child_process");
 function prefixProcessLines(data, prefix) {
 	let lines = data.split("\n");
 
-	for(var i = 0; i < lines.length; i++) {
+	for(let i = 0; i < lines.length; i++) {
 		if(lines[i] === "") {
 			continue;
 		}
