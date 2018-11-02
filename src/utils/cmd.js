@@ -27,7 +27,9 @@ module.exports = class CMDUtilities {
 		if(!await this.tryCommand(packageName)) {
 			Logger.profile("npm");
 
-			this.checkForError(await this.execute(`npm install ${packageName}${options.global ? " -g" : ""}`, {cwd: options.cwd}));
+			this.checkForError(
+			  await this.execute(`npm install ${packageName}${options.global ? " -g" : ""}`, {cwd: options.cwd})
+			);
 
 			Logger.profile("npm", "debug", "install", packageName, options);
 		}

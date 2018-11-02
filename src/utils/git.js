@@ -3,7 +3,8 @@ const ChildProcess = require("child_process");
 
 module.exports = class GitUtilities {
 	gitPull(path, destination, branch = "master") {
-		if(!FileSystem.existsSync(destination + "/.git") || !FileSystem.statSync(destination + "/.git").isDirectory()) {
+		if(!FileSystem.existsSync(destination + "/.git") 
+		  || !FileSystem.statSync(destination + "/.git").isDirectory()) {
 			this.gitSetup(path, destination);
 		}
 

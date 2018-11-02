@@ -29,7 +29,10 @@ module.exports = class Fork {
 	start() {
 		Logger.profile(this.options.name);
 
-		this.process = ChildProcess.fork(this.options.path, [], {cwd: `${Utils.path.get()}/test`, stdio: ['pipe', 'pipe', 'pipe', 'ipc']});
+		this.process = ChildProcess.fork(
+		  this.options.path, [], 
+		  {cwd: `${Utils.path.get()}/test`, stdio: ['pipe', 'pipe', 'pipe', 'ipc']
+		});
 
 		this.process.stdout.on('data', (data) => {
 			process.stdout.write(prefixProcessLines(data.toString(), this.options.prefix));
@@ -46,7 +49,8 @@ module.exports = class Fork {
 		this.process.on('close', (code) => {
 			Logger.info(this.options.name, `exited with code ${code}`);
 
-			if(code === 123 || typeof this.options.keepAlive !== "number" || this.options.keepAlive <= this.tries) {
+			if(code === 123 || typeof this.options.keepAlive !== "number" 
+			  || this.options.keepAlive <= this.tries) {
 				return Logger.profile(this.options.name, "info", "ending");
 			}
 

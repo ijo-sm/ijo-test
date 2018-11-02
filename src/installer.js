@@ -1,7 +1,10 @@
 async function install(config, destination) {
 	switch(config.type) {
 		case "fs":
-			Utils.fs.copyFolderRecursively(config.path, destination, {exclude: ["/.git/", "/test/", "/node_modules/"]});
+			Utils.fs.copyFolderRecursively(
+			  config.path, destination, 
+			  {exclude: ["/.git/", "/test/", "/node_modules/"]
+			});
 			break;
 
 		case "git":
