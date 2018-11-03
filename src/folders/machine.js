@@ -9,6 +9,7 @@ module.exports = class PanelFolder {
 		this.createFolder();
 		
 		await this.installMachine();
+		await this.installPackages();
 	}
 
 	createFolder() {
@@ -22,5 +23,9 @@ module.exports = class PanelFolder {
 		await Installer.machine(this.config);
 
 		Logger.profile("machine", "info", "installing finished");
+	}
+
+	async installPackages() {
+		await Utils.cmd.forceInstallNPMPackage("", {cwd: `${Utils.path.get()}/test/machine`});
 	}
 }
