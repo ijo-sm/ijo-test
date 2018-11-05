@@ -1,4 +1,4 @@
-const Installer = require("./../installer");
+const Installer = require("../installer");
 
 module.exports = class PluginsFolder {
 	constructor(config, path) {
@@ -8,23 +8,19 @@ module.exports = class PluginsFolder {
 
 	async create() {
 		this.createFolder();
+		
 		await this.installPlugins();
 	}
 
 	createFolder() {
-		Utils.fs.mkdir(Utils.path.get() + "/test/" + this.path + "/plugins");
+		Utils.fs.mkdir(`${Utils.path.get()}/test/${this.path}/plugins`);
 	}
 
 	async installPlugins() {
-		let plugins = this.config.plugins;
+		let plugins = this.config.plugins[this.path];
 
 		if(typeof plugins !== "object") {
-			if(Utils.path.getPackageName() !== "plugin") {
-				return;
-			}
-
-			plugins = {};
-			plugins[Utils.path.getExactPackageName()] = {};
+			return;
 		}
 
 		if(Utils.path.getPackageName() === "plugin" && plugins[Utils.path.getExactPackageName()] === undefined) {

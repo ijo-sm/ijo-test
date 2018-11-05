@@ -1,7 +1,10 @@
 async function install(config, destination) {
 	switch(config.type) {
 		case "fs":
-			Utils.fs.copyFolderRecursively(config.path, destination, {exclude: ["/.git/", "/test/", "/node_modules/"]});
+			Utils.fs.copyFolderRecursively(
+			  config.path, destination, 
+			  {exclude: ["/.git/", "/test/", "/node_modules/"]
+			});
 			break;
 
 		case "git":
@@ -27,7 +30,7 @@ class Installer {
 			config.ijo.path = Utils.path.get();
 		}
 
-		await install(config.ijo, Utils.path.get() + "/test/panel");
+		await install(config.ijo, `${Utils.path.get()}/test/panel`);
 	}
 
 	async machine(config) {
@@ -45,7 +48,7 @@ class Installer {
 			config.machine.path = Utils.path.get();
 		}
 
-		await install(config.machine, Utils.path.get() + "/test/machine");
+		await install(config.machine, `${Utils.path.get()}/test/machine`);
 	}
 
 	async plugin(config, name, location) {
@@ -54,9 +57,9 @@ class Installer {
 			config.path = Utils.path.get();
 		}
 
-		Utils.fs.mkdir(Utils.path.get() + "/test/" + location + "/plugins/" + name);
+		Utils.fs.mkdir(`${Utils.path.get()}/test/${location}/plugins/${name}`);
 
-		await install(config, Utils.path.get() + "/test/" + location + "/plugins/" + name);
+		await install(config, `${Utils.path.get()}/test/${location}/plugins/${name}`);
 	}
 }
 

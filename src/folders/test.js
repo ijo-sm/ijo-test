@@ -10,16 +10,17 @@ module.exports = class TestFolder {
 	async create() {
 		this.createFolder();
 		this.cleanupFiles();
+		
 		await this.createFolders();
 	}
 
 	createFolder() {
-		Utils.fs.mkdir(Utils.path.get() + "/test");
+		Utils.fs.mkdir(`${Utils.path.get()}/test`);
 	}
 
 	cleanupFiles() {
 		if(!this.config.save_panel_config) {
-			Utils.lazyCatch(() => FileSystem.unlinkSync(Utils.path() + "/test/panel.json"));
+			Utils.lazyCatch(() => FileSystem.unlinkSync(`${Utils.path.get()}/test/panel.json`));
 		}
 	}
 
@@ -40,6 +41,6 @@ module.exports = class TestFolder {
 			Logger.profile("MachineFolder", "info", "creating finished");
 		}
 
-		Utils.fs.mkdir(Utils.path.get() + "/test/data");
+		Utils.fs.mkdir(`${Utils.path.get()}/test/data`);
 	}
 }

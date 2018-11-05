@@ -9,13 +9,14 @@ module.exports = class PanelFolder {
 
 	async create() {
 		this.createFolder();
+		
 		await this.createFolders();
 		await this.installPanel();
 		await this.installPackages();
 	}
 
 	createFolder() {
-		Utils.fs.mkdir(Utils.path.get() + "/test/panel");
+		Utils.fs.mkdir(`${Utils.path.get()}/test/panel`);
 	}
 
 	async createFolders() {
@@ -43,6 +44,6 @@ module.exports = class PanelFolder {
 	}
 
 	async installPackages() {
-		await Utils.cmd.forceInstallNPMPackage("", {cwd: Utils.path.get() + "/test/panel"});
+		await Utils.cmd.forceInstallNPMPackage("", {cwd: `${Utils.path.get()}/test/panel`});
 	}
 }
